@@ -38,12 +38,6 @@ Release:
 > ./gradlew :app:testReleaseUnitTestCoverage
 ```
 
-## Firebase
-
-Create your Firebase project, check here: https://firebase.google.com/docs/android/setup.
-
-Project variation with Firebase Crashlytics, [here](https://github.com/santimattius/android-basic-skeleton/tree/with_crashlitycs)
-
 ## Configure Local Secrets
 
 Check this [documentation](https://github.com/google/secrets-gradle-plugin#installation)
@@ -64,26 +58,6 @@ Using into AndroidManifest:
 <meta-data android:value="${apiKey}" />
 
 ```
-
-### Last AGP versions
-Add into gradle.properties:
-
-```properties
-android.defaults.buildfeatures.buildconfig=true
-```
-
-or into build.gradle.kts
-
-```kotlin
-android {
-    buildFeatures {
-        buildConfig = true
-    }
-}
-```
-
-**Important:** Avoid adding `android.defaults.buildfeatures.buildconfig=true` to your `gradle.properties` file because
-that property is [deprecated in AGP 8.0 and is scheduled to be removed in AGP 9.0](https://cs.android.com/android-studio/platform/tools/base/+/0bc1c23297760643b03e8cfd8acc52c007a99cd6).
 
 ### Github actions
 
@@ -116,7 +90,7 @@ jobs:
         run: ./gradlew :app:check
 ```
 
-## Dependencies
+## Dependencies (default branch)
 
 Below you will find the libraries used to build the template and according to my criteria the most
 used in android development so far.
