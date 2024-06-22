@@ -4,8 +4,6 @@ androidGradlePlugin = "8.5.0"
 kotlinGradlePlugin = "2.0.0"
 hiltGradlePlugin = "2.51.1"
 detektGradlePlugin = "1.23.6"
-googleServicePlugin = "4.4.2"
-crashlyticsPlugin = "3.0.1"
 ksp = "2.0.0-1.0.22"
 googleSecretsPlugin = "2.0.1"
 automatticMeasureBuilds = "3.0.0"
@@ -22,6 +20,8 @@ gson = "2.11.0"
 hilt = "2.51.1"
 hiltCompose = "1.2.0"
 coil = "2.6.0"
+roomVersion = "2.6.1"
+
 
 # Testing
 junit = "4.13.2"
@@ -63,6 +63,9 @@ coroutine_test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", ver
 hilt_android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt_compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
 hilt_navigation = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltCompose" }
+# Room
+room_compiler = { module = "androidx.room:room-compiler", version.ref = "roomVersion" }
+room_ktx = { module = "androidx.room:room-ktx", version.ref = "roomVersion" }
 # Android core
 core_ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
 # Test
@@ -86,10 +89,9 @@ android-library = { id = "com.android.library", version.ref = "androidGradlePlug
 kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinGradlePlugin" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hiltGradlePlugin" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detektGradlePlugin" }
-google-services = { id = "com.google.gms.google-services", version.ref = "googleServicePlugin" }
-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "crashlyticsPlugin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 google-secrets-gradle-plugin = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "googleSecretsPlugin" }
 automattic-measure-builds = { id = "com.automattic.android.measure-builds", version.ref = "automatticMeasureBuilds" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlinGradlePlugin" }
+room = { id = "androidx.room", version.ref = "roomVersion" }
 

@@ -10,6 +10,7 @@ plugins {
     alias(libs.plugins.hilt)
     alias(libs.plugins.google.secrets.gradle.plugin)
     alias(libs.plugins.automattic.measure.builds)
+    alias(libs.plugins.room)
 }
 
 apply("$rootDir/gradle/coverage.gradle")
@@ -65,6 +66,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 
     packaging {
@@ -78,6 +80,11 @@ composeCompiler {
     enableStrongSkippingMode = true
     reportsDestination = layout.buildDirectory.dir("compose_compiler")
 }
+
+room {
+    schemaDirectory("$projectDir/schemas")
+}
+
 
 fun extraString(key: String): String {
     return extra[key] as String
@@ -120,6 +127,9 @@ dependencies {
     ksp(libs.hilt.compiler)
 
     implementation(libs.coil.core)
+
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
 
     testImplementation(platform(libs.compose.bom))
     testImplementation(libs.junit)
