@@ -7,7 +7,6 @@ plugins {
     alias(libs.plugins.kotlin)
     alias(libs.plugins.ksp)
     alias(libs.plugins.detekt)
-    alias(libs.plugins.hilt)
     alias(libs.plugins.google.secrets.gradle.plugin)
     alias(libs.plugins.automattic.measure.builds)
     alias(libs.plugins.room)
@@ -74,6 +73,12 @@ android {
             excludes.add("/META-INF/{AL2.0,LGPL2.1}")
         }
     }
+    applicationVariants.forEach { variant ->
+        variant.sourceSets.forEach {
+            it.javaDirectories += files("build/generated/ksp/${variant.name}/kotlin")
+        }
+    }
+
 }
 
 composeCompiler {
@@ -85,6 +90,9 @@ room {
     schemaDirectory("$projectDir/schemas")
 }
 
+ksp {
+    arg("KOIN_CONFIG_CHECK","true")
+}
 
 fun extraString(key: String): String {
     return extra[key] as String
@@ -111,7 +119,7 @@ dependencies {
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.lifecycle.viewmodel.compose)
     implementation(libs.lifecycle.runtime.compose)
-
+    implementation(libs.activity.compose)
     implementation(platform(libs.compose.bom))
     implementation(libs.bundles.compose)
     debugImplementation(libs.bundles.compose.debug)
@@ -122,9 +130,10 @@ dependencies {
     implementation(libs.gson.core)
     testImplementation(libs.mockwebserver)
 
-    implementation(libs.hilt.android)
-    implementation(libs.hilt.navigation)
-    ksp(libs.hilt.compiler)
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose)
+    implementation(libs.koin.annotations)
+    ksp(libs.koin.ksp.compiler)
 
     implementation(libs.coil.core)
 
