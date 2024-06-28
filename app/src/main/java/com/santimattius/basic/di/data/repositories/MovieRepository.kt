@@ -7,11 +7,10 @@ import com.santimattius.basic.di.data.entityToDomain
 import com.santimattius.basic.di.domain.Movie
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import javax.inject.Inject
-import javax.inject.Singleton
+import org.koin.core.annotation.Single
 
-@Singleton
-class MovieRepository @Inject constructor(
+@Single
+class MovieRepository(
     private val remoteDataSource: MovieRemoteDataSource,
     private val localDataSource: MovieLocalDataSource,
 ) {

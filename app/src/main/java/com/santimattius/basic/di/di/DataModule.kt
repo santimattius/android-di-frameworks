@@ -7,24 +7,18 @@ import com.santimattius.basic.di.data.datasources.MovieLocalDataSource
 import com.santimattius.basic.di.data.datasources.MovieRemoteDataSource
 import com.santimattius.basic.di.data.datasources.local.RoomMovieDataSource
 import com.santimattius.basic.di.data.datasources.remote.RetrofitMovieDataSource
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
+import org.koin.core.annotation.Module
+import org.koin.core.annotation.Single
 
 @Module
-@InstallIn(SingletonComponent::class)
 class DataModule {
 
-    @Provides
-    @Singleton
+    @Single
     fun provideMovieRemoteDataSource(retrofitServiceCreator: RetrofitServiceCreator): MovieRemoteDataSource {
         return RetrofitMovieDataSource(retrofitServiceCreator.create(TheMovieDBService::class))
     }
 
-    @Provides
-    @Singleton
+    @Single
     fun provideMovieLocalDataSource(appDataBase: AppDataBase): MovieLocalDataSource {
         return RoomMovieDataSource(appDataBase)
     }
