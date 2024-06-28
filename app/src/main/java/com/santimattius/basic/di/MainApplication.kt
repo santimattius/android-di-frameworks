@@ -1,10 +1,12 @@
 package com.santimattius.basic.di
 
 import android.app.Application
+import com.santimattius.basic.di.di.AppModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.ksp.generated.defaultModule
 import org.koin.ksp.generated.module
+import com.santimattius.basic.di.di.DataModule
 
 class MainApplication : Application(){
 
@@ -13,8 +15,8 @@ class MainApplication : Application(){
         startKoin {
             androidContext(this@MainApplication)
             modules(
-                com.santimattius.basic.di.di.DataModule().module,
-                com.santimattius.basic.di.di.AppModule().module,
+                DataModule().module,
+                AppModule().module,
                 defaultModule
             )
         }
