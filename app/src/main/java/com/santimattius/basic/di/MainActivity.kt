@@ -89,7 +89,7 @@ fun MainScreen(
                 .padding(it),
         ) {
             if (state.isLoading) {
-                Box(modifier = Modifier.fillMaxSize()) {
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator()
                 }
             } else {
@@ -100,7 +100,7 @@ fun MainScreen(
 }
 
 @Composable
-@Suppress("MagicNumber",)
+@Suppress("MagicNumber")
 private fun Movies(
     modifier: Modifier = Modifier,
     movies: List<Movie>,
