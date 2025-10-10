@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.santimattius.basic.di.data.repositories.MovieRepository
 import com.santimattius.basic.di.domain.Movie
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
@@ -12,14 +11,15 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import javax.inject.Inject
+import org.koin.android.annotation.KoinViewModel
+import jakarta.inject.Inject
 
 data class MainUiState(
     val isLoading: Boolean = false,
     val data: List<Movie> = emptyList(),
 )
 
-@HiltViewModel
+@KoinViewModel
 class MainViewModel @Inject constructor(
     private val repository: MovieRepository
 ) : ViewModel() {
