@@ -5,30 +5,26 @@ import com.santimattius.basic.di.core.database.AppDataBase
 import com.santimattius.basic.di.core.network.RequestInterceptor
 import com.santimattius.basic.di.core.network.RetrofitServiceCreator
 import com.santimattius.basic.skeleton.BuildConfig
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.components.SingletonComponent
+import jakarta.inject.Named
+import jakarta.inject.Singleton
 import okhttp3.OkHttpClient
-import javax.inject.Named
-import javax.inject.Singleton
+import org.koin.core.annotation.Configuration
+import org.koin.core.annotation.Module
 
 @Module
-@InstallIn(SingletonComponent::class)
+@Configuration
 class AppModule {
 
-    @Provides
+    @Singleton
     @Named("api_key")
     fun provideApiKey() = BuildConfig.apiKey
 
 
-    @Provides
+    @Singleton
     @Named("base_url")
     @Suppress("FunctionOnlyReturningConstant")
     fun provideBaseUrl() = "https://api.themoviedb.org"
 
-    @Provides
     @Singleton
     fun provideRetrofitCreator(
         @Named("base_url") baseUrl: String,
@@ -40,13 +36,12 @@ class AppModule {
         )
     }
 
-    @Provides
+
     @Singleton
     fun provideOkHttpClient(@Named("api_key") apiKey: String) = OkHttpClient().newBuilder()
         .addInterceptor(RequestInterceptor(apiKey = apiKey))
         .build()
 
-    @Provides
     @Singleton
-    fun provideAppDataBase(@ApplicationContext context: Context) = AppDataBase.get(context)
+    fun provideAppDataBase(context: Context) = AppDataBase.get(context)
 }

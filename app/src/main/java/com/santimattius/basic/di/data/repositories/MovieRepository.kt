@@ -7,8 +7,8 @@ import com.santimattius.basic.di.data.entityToDomain
 import com.santimattius.basic.di.domain.Movie
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import javax.inject.Inject
-import javax.inject.Singleton
+import jakarta.inject.Inject
+import jakarta.inject.Singleton
 
 @Singleton
 class MovieRepository @Inject constructor(
